@@ -157,8 +157,17 @@ version          '0.1.0'
 depends 'database'
 
 pochi-2:myapp snumano$ cd recipes/
-pochi-2:recipes snumano$ vi db.rb 
-pochi-2:recipes snumano$ cat db.rb 
+pochi-2:recipes snumano$ vi default.rb
+pochi-2:recipes snumano$ cat default.rb
+#
+# Cookbook Name:: myapp
+# Recipe:: default
+#
+# Copyright 2013, YOUR_COMPANY_NAME
+#
+# All rights reserved - Do Not Redistribute
+#
+
 include_recipe "database::mysql"
 
 # Store this in a variable so we don't keep repeating it
@@ -184,7 +193,7 @@ Bringing machine 'default' up with 'virtualbox' provider...
 [default] Matching MAC address for NAT networking...
 [default] Setting the name of the VM...
 [default] Clearing any previously set forwarded ports...
-[Berkshelf] Updating Vagrant's berkshelf: '/Users/snumano/.berkshelf/default/vagrant/berkshelf-20130722-4434-me9cly-default'
+[Berkshelf] Updating Vagrant's berkshelf: '/Users/snumano/.berkshelf/default/vagrant/berkshelf-20130723-5612-1h4diiv-default'
 [Berkshelf] Using apt (1.9.0)
 [Berkshelf] Using mysql (3.0.2)
 [Berkshelf] Using nginx (1.7.0)
@@ -197,12 +206,14 @@ Bringing machine 'default' up with 'virtualbox' provider...
 [Berkshelf] Using postgresql (3.0.2)
 [Berkshelf] Using aws (0.101.2)
 [Berkshelf] Using xfs (1.1.0)
+[default] Fixed port collision for 22 => 2222. Now on port 2200.
+[default] Fixed port collision for 80 => 8080. Now on port 2201.
 [default] Creating shared folders metadata...
 [default] Clearing any previously set network interfaces...
 [default] Preparing network interfaces based on configuration...
 [default] Forwarding ports...
-[default] -- 22 => 2222 (adapter 1)
-[default] -- 80 => 8080 (adapter 1)
+[default] -- 22 => 2200 (adapter 1)
+[default] -- 80 => 2201 (adapter 1)
 [default] Booting VM...
 [default] Waiting for VM to boot. This can take a few minutes.
 [default] VM booted and ready for use!
@@ -215,42 +226,42 @@ Bringing machine 'default' up with 'virtualbox' provider...
 Generating chef JSON and uploading...
 Running chef-solo...
 stdin: is not a tty
-[2013-07-22T14:30:30+00:00] INFO: *** Chef 10.14.2 ***
-[2013-07-22T14:30:30+00:00] INFO: Setting the run_list to ["recipe[apt]", "recipe[nginx]", "recipe[mysql::server]", "recipe[mysql]", "recipe[database::mysql]", "recipe[myapp::db]", "recipe[myapp]"] from JSON
-[2013-07-22T14:30:30+00:00] INFO: Run List is [recipe[apt], recipe[nginx], recipe[mysql::server], recipe[mysql], recipe[database::mysql], recipe[myapp::db], recipe[myapp]]
-[2013-07-22T14:30:30+00:00] INFO: Run List expands to [apt, nginx, mysql::server, mysql, database::mysql, myapp::db, myapp]
-[2013-07-22T14:30:30+00:00] INFO: Starting Chef Run for precise64
-[2013-07-22T14:30:30+00:00] INFO: Running start handlers
-[2013-07-22T14:30:30+00:00] INFO: Start handlers complete.
-[2013-07-22T14:30:31+00:00] INFO: ohai plugins will be at: /etc/chef/ohai_plugins
-[2013-07-22T14:30:31+00:00] INFO: Processing remote_directory[/etc/chef/ohai_plugins] action create (ohai::default line 30)
-[2013-07-22T14:30:31+00:00] INFO: Processing directory[/etc/chef/ohai_plugins] action create (dynamically defined)
-[2013-07-22T14:30:31+00:00] INFO: directory[/etc/chef/ohai_plugins] created directory /etc/chef/ohai_plugins
-[2013-07-22T14:30:31+00:00] INFO: directory[/etc/chef/ohai_plugins] mode changed to 755
-[2013-07-22T14:30:31+00:00] INFO: Processing cookbook_file[/etc/chef/ohai_plugins/README] action create (dynamically defined)
-[2013-07-22T14:30:31+00:00] INFO: cookbook_file[/etc/chef/ohai_plugins/README] mode changed to 644
-[2013-07-22T14:30:31+00:00] INFO: cookbook_file[/etc/chef/ohai_plugins/README] created file /etc/chef/ohai_plugins/README
-[2013-07-22T14:30:31+00:00] INFO: remote_directory[/etc/chef/ohai_plugins] created directory /etc/chef/ohai_plugins
-[2013-07-22T14:30:31+00:00] INFO: remote_directory[/etc/chef/ohai_plugins] mode changed to 755
-[2013-07-22T14:30:31+00:00] INFO: Processing ohai[custom_plugins] action reload (ohai::default line 44)
-[2013-07-22T14:30:31+00:00] INFO: ohai[custom_plugins] reloaded
-[2013-07-22T14:30:31+00:00] INFO: Could not find previously defined grants.sql resource
-[2013-07-22T14:30:31+00:00] INFO: Processing execute[apt-get-update-build-essentials] action run (build-essential::debian line 22)
-[2013-07-22T14:30:58+00:00] INFO: execute[apt-get-update-build-essentials] ran successfully
-[2013-07-22T14:30:58+00:00] INFO: Processing package[autoconf] action install (build-essential::debian line 40)
-[2013-07-22T14:31:14+00:00] INFO: Processing package[binutils-doc] action install (build-essential::debian line 40)
-[2013-07-22T14:31:20+00:00] INFO: Processing package[bison] action install (build-essential::debian line 40)
-[2013-07-22T14:31:25+00:00] INFO: Processing package[build-essential] action install (build-essential::debian line 40)
-[2013-07-22T14:32:16+00:00] INFO: Processing package[flex] action install (build-essential::debian line 40)
-[2013-07-22T14:32:20+00:00] INFO: Processing package[mysql-client] action install (mysql::client line 46)
-[2013-07-22T14:33:24+00:00] INFO: Processing package[libmysqlclient-dev] action install (mysql::client line 46)
-[2013-07-22T14:33:34+00:00] INFO: Processing chef_gem[mysql] action install (mysql::ruby line 31)
-[2013-07-22T14:33:43+00:00] ERROR: Running exception handlers
-[2013-07-22T14:33:43+00:00] ERROR: Exception handlers complete
-[2013-07-22T14:33:43+00:00] FATAL: Stacktrace dumped to /tmp/vagrant-chef-1/chef-stacktrace.out
-[2013-07-22T14:33:43+00:00] FATAL: Chef::Exceptions::CookbookNotFound: Cookbook myapp not found. If you're loading myapp from another cookbook, make sure you configure the dependency in your metadata
-Chef never successfully completed! Any errors should be visible in the output above. Please fix your recipes so that they properly complete.
-pochi-2:chef-repo snumano$ 
+[2013-07-22T15:55:50+00:00] INFO: *** Chef 10.14.2 ***
+[2013-07-22T15:55:50+00:00] INFO: Setting the run_list to ["recipe[apt]", "recipe[nginx]", "recipe[mysql::server]", "recipe[mysql]", "recipe[database::mysql]", "recipe[myapp]"] from JSON
+[2013-07-22T15:55:50+00:00] INFO: Run List is [recipe[apt], recipe[nginx], recipe[mysql::server], recipe[mysql], recipe[database::mysql], recipe[myapp]]
+[2013-07-22T15:55:50+00:00] INFO: Run List expands to [apt, nginx, mysql::server, mysql, database::mysql, myapp]
+[2013-07-22T15:55:50+00:00] INFO: Starting Chef Run for precise64
+[2013-07-22T15:55:50+00:00] INFO: Running start handlers
+[2013-07-22T15:55:50+00:00] INFO: Start handlers complete.
+[2013-07-22T15:55:51+00:00] INFO: ohai plugins will be at: /etc/chef/ohai_plugins
+[2013-07-22T15:55:51+00:00] INFO: Processing remote_directory[/etc/chef/ohai_plugins] action create (ohai::default line 30)
+[2013-07-22T15:55:51+00:00] INFO: Processing directory[/etc/chef/ohai_plugins] action create (dynamically defined)
+[2013-07-22T15:55:51+00:00] INFO: directory[/etc/chef/ohai_plugins] created directory /etc/chef/ohai_plugins
+[2013-07-22T15:55:51+00:00] INFO: directory[/etc/chef/ohai_plugins] mode changed to 755
+[2013-07-22T15:55:51+00:00] INFO: Processing cookbook_file[/etc/chef/ohai_plugins/README] action create (dynamically defined)
+[2013-07-22T15:55:51+00:00] INFO: cookbook_file[/etc/chef/ohai_plugins/README] mode changed to 644
+[2013-07-22T15:55:51+00:00] INFO: cookbook_file[/etc/chef/ohai_plugins/README] created file /etc/chef/ohai_plugins/README
+[2013-07-22T15:55:51+00:00] INFO: remote_directory[/etc/chef/ohai_plugins] created directory /etc/chef/ohai_plugins
+[2013-07-22T15:55:51+00:00] INFO: remote_directory[/etc/chef/ohai_plugins] mode changed to 755
+[2013-07-22T15:55:51+00:00] INFO: Processing ohai[custom_plugins] action reload (ohai::default line 44)
+[2013-07-22T15:55:51+00:00] INFO: ohai[custom_plugins] reloaded
+[2013-07-22T15:55:51+00:00] INFO: Could not find previously defined grants.sql resource
+[2013-07-22T15:55:51+00:00] INFO: Processing execute[apt-get-update-build-essentials] action run (build-essential::debian line 22)
+[2013-07-22T15:56:02+00:00] INFO: execute[apt-get-update-build-essentials] ran successfully
+[2013-07-22T15:56:02+00:00] INFO: Processing package[autoconf] action install (build-essential::debian line 40)
+[2013-07-22T15:56:07+00:00] INFO: Processing package[binutils-doc] action install (build-essential::debian line 40)
+[2013-07-22T15:56:11+00:00] INFO: Processing package[bison] action install (build-essential::debian line 40)
+[2013-07-22T15:56:14+00:00] INFO: Processing package[build-essential] action install (build-essential::debian line 40)
+[2013-07-22T15:56:34+00:00] INFO: Processing package[flex] action install (build-essential::debian line 40)
+[2013-07-22T15:56:37+00:00] INFO: Processing package[mysql-client] action install (mysql::client line 46)
+[2013-07-22T15:56:58+00:00] INFO: Processing package[libmysqlclient-dev] action install (mysql::client line 46)
+[2013-07-22T15:57:03+00:00] INFO: Processing chef_gem[mysql] action install (mysql::ruby line 31)
+[2013-07-22T15:57:10+00:00] ERROR: Running exception handlers
+[2013-07-22T15:57:10+00:00] ERROR: Exception handlers complete
+[2013-07-22T15:57:10+00:00] FATAL: Stacktrace dumped to /tmp/vagrant-chef-1/chef-stacktrace.out
+[2013-07-22T15:57:10+00:00] FATAL: Chef::Exceptions::CookbookNotFound: Cookbook myapp not found. If you're loading myapp from another cookbook, make sure you configure the dependency in your metadata
+Chef never successfully completed! Any errors should be visible in the
+output above. Please fix your recipes so that they properly complete.
 </pre>
 
 
@@ -279,7 +290,7 @@ pochi-2:chef-repo snumano$ mv Berksfile.lock _Berksfile.lock
 </pre>
 
 9.そして再びvagrant up実行すると、今度は正常に実行完了した。
-(事前にvagrant haltしている)
+(事前にvagrant halt;vagrant destroyしている)
 <pre>
 pochi-2:chef-repo snumano$ vagrant up
 Bringing machine 'default' up with 'virtualbox' provider...
@@ -287,12 +298,14 @@ Bringing machine 'default' up with 'virtualbox' provider...
 [default] Matching MAC address for NAT networking...
 [default] Setting the name of the VM...
 [default] Clearing any previously set forwarded ports...
+[default] Fixed port collision for 22 => 2222. Now on port 2200.
+[default] Fixed port collision for 80 => 8080. Now on port 2201.
 [default] Creating shared folders metadata...
 [default] Clearing any previously set network interfaces...
 [default] Preparing network interfaces based on configuration...
 [default] Forwarding ports...
-[default] -- 22 => 2222 (adapter 1)
-[default] -- 80 => 8080 (adapter 1)
+[default] -- 22 => 2200 (adapter 1)
+[default] -- 80 => 2201 (adapter 1)
 [default] Booting VM...
 [default] Waiting for VM to boot. This can take a few minutes.
 [default] VM booted and ready for use!
@@ -306,169 +319,169 @@ Bringing machine 'default' up with 'virtualbox' provider...
 Generating chef JSON and uploading...
 Running chef-solo...
 stdin: is not a tty
-[2013-07-21T15:47:50+00:00] INFO: *** Chef 10.14.2 ***
-[2013-07-21T15:47:50+00:00] INFO: Setting the run_list to ["recipe[apt]", "recipe[nginx]", "recipe[mysql::server]", "recipe[mysql]", "recipe[database::mysql]", "recipe[myapp::db]"] from JSON
-[2013-07-21T15:47:50+00:00] INFO: Run List is [recipe[apt], recipe[nginx], recipe[mysql::server], recipe[mysql], recipe[database::mysql], recipe[myapp::db]]
-[2013-07-21T15:47:50+00:00] INFO: Run List expands to [apt, nginx, mysql::server, mysql, database::mysql, myapp::db]
-[2013-07-21T15:47:50+00:00] INFO: Starting Chef Run for precise64
-[2013-07-21T15:47:50+00:00] INFO: Running start handlers
-[2013-07-21T15:47:50+00:00] INFO: Start handlers complete.
-[2013-07-21T15:47:51+00:00] INFO: ohai plugins will be at: /etc/chef/ohai_plugins
-[2013-07-21T15:47:51+00:00] INFO: Processing remote_directory[/etc/chef/ohai_plugins] action create (ohai::default line 30)
-[2013-07-21T15:47:51+00:00] INFO: Processing directory[/etc/chef/ohai_plugins] action create (dynamically defined)
-[2013-07-21T15:47:51+00:00] INFO: directory[/etc/chef/ohai_plugins] created directory /etc/chef/ohai_plugins
-[2013-07-21T15:47:51+00:00] INFO: directory[/etc/chef/ohai_plugins] mode changed to 755
-[2013-07-21T15:47:51+00:00] INFO: Processing cookbook_file[/etc/chef/ohai_plugins/README] action create (dynamically defined)
-[2013-07-21T15:47:51+00:00] INFO: cookbook_file[/etc/chef/ohai_plugins/README] mode changed to 644
-[2013-07-21T15:47:51+00:00] INFO: cookbook_file[/etc/chef/ohai_plugins/README] created file /etc/chef/ohai_plugins/README
-[2013-07-21T15:47:51+00:00] INFO: remote_directory[/etc/chef/ohai_plugins] created directory /etc/chef/ohai_plugins
-[2013-07-21T15:47:51+00:00] INFO: remote_directory[/etc/chef/ohai_plugins] mode changed to 755
-[2013-07-21T15:47:51+00:00] INFO: Processing ohai[custom_plugins] action reload (ohai::default line 44)
-[2013-07-21T15:47:51+00:00] INFO: ohai[custom_plugins] reloaded
-[2013-07-21T15:47:51+00:00] INFO: Could not find previously defined grants.sql resource
-[2013-07-21T15:47:51+00:00] INFO: Processing execute[apt-get-update-build-essentials] action run (build-essential::debian line 22)
-[2013-07-21T15:48:01+00:00] INFO: execute[apt-get-update-build-essentials] ran successfully
-[2013-07-21T15:48:01+00:00] INFO: Processing package[autoconf] action install (build-essential::debian line 40)
-[2013-07-21T15:48:09+00:00] INFO: Processing package[binutils-doc] action install (build-essential::debian line 40)
-[2013-07-21T15:48:14+00:00] INFO: Processing package[bison] action install (build-essential::debian line 40)
-[2013-07-21T15:48:17+00:00] INFO: Processing package[build-essential] action install (build-essential::debian line 40)
-[2013-07-21T15:48:43+00:00] INFO: Processing package[flex] action install (build-essential::debian line 40)
-[2013-07-21T15:48:47+00:00] INFO: Processing package[mysql-client] action install (mysql::client line 46)
-[2013-07-21T15:49:10+00:00] INFO: Processing package[libmysqlclient-dev] action install (mysql::client line 46)
-[2013-07-21T15:49:16+00:00] INFO: Processing chef_gem[mysql] action install (mysql::ruby line 31)
-[2013-07-21T15:49:23+00:00] INFO: Processing execute[apt-get-update] action run (apt::default line 22)
-[2013-07-21T15:49:30+00:00] INFO: execute[apt-get-update] ran successfully
-[2013-07-21T15:49:30+00:00] INFO: Processing execute[apt-get update] action nothing (apt::default line 29)
-[2013-07-21T15:49:30+00:00] INFO: Processing execute[apt-get autoremove] action nothing (apt::default line 36)
-[2013-07-21T15:49:30+00:00] INFO: Processing execute[apt-get autoclean] action nothing (apt::default line 42)
-[2013-07-21T15:49:30+00:00] INFO: Processing package[update-notifier-common] action install (apt::default line 48)
-[2013-07-21T15:49:33+00:00] INFO: package[update-notifier-common] sending run action to execute[apt-get-update] (immediate)
-[2013-07-21T15:49:33+00:00] INFO: Processing execute[apt-get-update] action run (apt::default line 22)
-[2013-07-21T15:49:39+00:00] INFO: execute[apt-get-update] ran successfully
-[2013-07-21T15:49:39+00:00] INFO: Processing execute[apt-get-update-periodic] action run (apt::default line 52)
-[2013-07-21T15:49:39+00:00] INFO: Processing directory[/var/cache/local] action create (apt::default line 62)
-[2013-07-21T15:49:39+00:00] INFO: directory[/var/cache/local] created directory /var/cache/local
-[2013-07-21T15:49:39+00:00] INFO: directory[/var/cache/local] owner changed to 0
-[2013-07-21T15:49:39+00:00] INFO: directory[/var/cache/local] group changed to 0
-[2013-07-21T15:49:39+00:00] INFO: directory[/var/cache/local] mode changed to 755
-[2013-07-21T15:49:39+00:00] INFO: Processing directory[/var/cache/local/preseeding] action create (apt::default line 62)
-[2013-07-21T15:49:39+00:00] INFO: directory[/var/cache/local/preseeding] created directory /var/cache/local/preseeding
-[2013-07-21T15:49:39+00:00] INFO: directory[/var/cache/local/preseeding] owner changed to 0
-[2013-07-21T15:49:39+00:00] INFO: directory[/var/cache/local/preseeding] group changed to 0
-[2013-07-21T15:49:39+00:00] INFO: directory[/var/cache/local/preseeding] mode changed to 755
-[2013-07-21T15:49:39+00:00] INFO: Processing ohai[reload_nginx] action nothing (nginx::ohai_plugin line 22)
-[2013-07-21T15:49:39+00:00] INFO: Processing template[/etc/chef/ohai_plugins/nginx.rb] action create (nginx::ohai_plugin line 27)
-[2013-07-21T15:49:39+00:00] INFO: template[/etc/chef/ohai_plugins/nginx.rb] updated content
-[2013-07-21T15:49:39+00:00] INFO: template[/etc/chef/ohai_plugins/nginx.rb] owner changed to 0
-[2013-07-21T15:49:39+00:00] INFO: template[/etc/chef/ohai_plugins/nginx.rb] group changed to 0
-[2013-07-21T15:49:39+00:00] INFO: template[/etc/chef/ohai_plugins/nginx.rb] mode changed to 755
-[2013-07-21T15:49:39+00:00] INFO: template[/etc/chef/ohai_plugins/nginx.rb] sending reload action to ohai[reload_nginx] (immediate)
-[2013-07-21T15:49:39+00:00] INFO: Processing ohai[reload_nginx] action reload (nginx::ohai_plugin line 22)
-[2013-07-21T15:49:39+00:00] INFO: ohai[reload_nginx] reloaded
-[2013-07-21T15:49:39+00:00] INFO: Processing remote_directory[/etc/chef/ohai_plugins] action nothing (ohai::default line 30)
-[2013-07-21T15:49:39+00:00] INFO: Processing ohai[custom_plugins] action nothing (ohai::default line 44)
-[2013-07-21T15:49:39+00:00] INFO: Processing package[nginx] action install (nginx::default line 41)
-[2013-07-21T15:49:45+00:00] INFO: Processing service[nginx] action enable (nginx::default line 42)
-[2013-07-21T15:49:45+00:00] INFO: Processing directory[/etc/nginx] action create (nginx::commons_dir line 21)
-[2013-07-21T15:49:45+00:00] INFO: Processing directory[/var/log/nginx] action create (nginx::commons_dir line 28)
-[2013-07-21T15:49:45+00:00] INFO: directory[/var/log/nginx] owner changed to 33
-[2013-07-21T15:49:45+00:00] INFO: Processing directory[/etc/nginx/sites-available] action create (nginx::commons_dir line 36)
-[2013-07-21T15:49:45+00:00] INFO: Processing directory[/etc/nginx/sites-enabled] action create (nginx::commons_dir line 36)
-[2013-07-21T15:49:45+00:00] INFO: Processing directory[/etc/nginx/conf.d] action create (nginx::commons_dir line 36)
-[2013-07-21T15:49:45+00:00] INFO: Processing template[/usr/sbin/nxensite] action create (nginx::commons_script line 22)
-[2013-07-21T15:49:45+00:00] INFO: template[/usr/sbin/nxensite] updated content
-[2013-07-21T15:49:45+00:00] INFO: template[/usr/sbin/nxensite] owner changed to 0
-[2013-07-21T15:49:45+00:00] INFO: template[/usr/sbin/nxensite] group changed to 0
-[2013-07-21T15:49:45+00:00] INFO: template[/usr/sbin/nxensite] mode changed to 755
-[2013-07-21T15:49:45+00:00] INFO: Processing template[/usr/sbin/nxdissite] action create (nginx::commons_script line 22)
-[2013-07-21T15:49:45+00:00] INFO: template[/usr/sbin/nxdissite] updated content
-[2013-07-21T15:49:45+00:00] INFO: template[/usr/sbin/nxdissite] owner changed to 0
-[2013-07-21T15:49:45+00:00] INFO: template[/usr/sbin/nxdissite] group changed to 0
-[2013-07-21T15:49:45+00:00] INFO: template[/usr/sbin/nxdissite] mode changed to 755
-[2013-07-21T15:49:45+00:00] INFO: Processing template[nginx.conf] action create (nginx::commons_conf line 21)
-[2013-07-21T15:49:46+00:00] INFO: template[nginx.conf] backed up to /var/chef/backup/etc/nginx/nginx.conf.chef-20130721154946
-[2013-07-21T15:49:46+00:00] INFO: template[nginx.conf] updated content
-[2013-07-21T15:49:46+00:00] INFO: template[nginx.conf] owner changed to 0
-[2013-07-21T15:49:46+00:00] INFO: template[nginx.conf] group changed to 0
-[2013-07-21T15:49:46+00:00] INFO: template[nginx.conf] mode changed to 644
-[2013-07-21T15:49:46+00:00] INFO: Processing template[/etc/nginx/sites-available/default] action create (nginx::commons_conf line 30)
-[2013-07-21T15:49:46+00:00] INFO: template[/etc/nginx/sites-available/default] backed up to /var/chef/backup/etc/nginx/sites-available/default.chef-20130721154946
-[2013-07-21T15:49:46+00:00] INFO: template[/etc/nginx/sites-available/default] updated content
-[2013-07-21T15:49:46+00:00] INFO: template[/etc/nginx/sites-available/default] owner changed to 0
-[2013-07-21T15:49:46+00:00] INFO: template[/etc/nginx/sites-available/default] group changed to 0
-[2013-07-21T15:49:46+00:00] INFO: template[/etc/nginx/sites-available/default] mode changed to 644
-[2013-07-21T15:49:46+00:00] INFO: template[/etc/nginx/sites-available/default] not queuing delayed action reload on service[nginx] (delayed), as it's already been queued
-[2013-07-21T15:49:46+00:00] INFO: Processing execute[nxensite default] action run (nginx::commons_conf line 23)
-[2013-07-21T15:49:46+00:00] INFO: Processing service[nginx] action start (nginx::default line 49)
-[2013-07-21T15:49:46+00:00] INFO: service[nginx] started
-[2013-07-21T15:49:46+00:00] INFO: Processing package[mysql-client] action install (mysql::client line 46)
-[2013-07-21T15:49:46+00:00] INFO: Processing package[libmysqlclient-dev] action install (mysql::client line 46)
-[2013-07-21T15:49:46+00:00] INFO: Processing directory[/var/cache/local/preseeding] action create (mysql::server line 47)
-[2013-07-21T15:49:46+00:00] INFO: Processing execute[preseed mysql-server] action nothing (mysql::server line 54)
-[2013-07-21T15:49:46+00:00] INFO: Processing template[/var/cache/local/preseeding/mysql-server.seed] action create (mysql::server line 59)
-[2013-07-21T15:49:46+00:00] INFO: template[/var/cache/local/preseeding/mysql-server.seed] updated content
-[2013-07-21T15:49:46+00:00] INFO: template[/var/cache/local/preseeding/mysql-server.seed] owner changed to 0
-[2013-07-21T15:49:46+00:00] INFO: template[/var/cache/local/preseeding/mysql-server.seed] group changed to 0
-[2013-07-21T15:49:46+00:00] INFO: template[/var/cache/local/preseeding/mysql-server.seed] mode changed to 600
-[2013-07-21T15:49:46+00:00] INFO: template[/var/cache/local/preseeding/mysql-server.seed] sending run action to execute[preseed mysql-server] (immediate)
-[2013-07-21T15:49:46+00:00] INFO: Processing execute[preseed mysql-server] action run (mysql::server line 54)
-[2013-07-21T15:49:46+00:00] INFO: execute[preseed mysql-server] ran successfully
-[2013-07-21T15:49:46+00:00] INFO: Processing template[/etc/mysql/debian.cnf] action create (mysql::server line 67)
-[2013-07-21T15:49:46+00:00] INFO: template[/etc/mysql/debian.cnf] updated content
-[2013-07-21T15:49:46+00:00] INFO: template[/etc/mysql/debian.cnf] owner changed to 0
-[2013-07-21T15:49:46+00:00] INFO: template[/etc/mysql/debian.cnf] group changed to 0
-[2013-07-21T15:49:46+00:00] INFO: template[/etc/mysql/debian.cnf] mode changed to 600
-[2013-07-21T15:49:46+00:00] INFO: Processing package[mysql-server] action install (mysql::server line 94)
-[2013-07-21T15:50:31+00:00] INFO: package[mysql-server] sending start action to service[mysql] (immediate)
-[2013-07-21T15:50:31+00:00] INFO: Processing service[mysql] action start (mysql::server line 218)
-[2013-07-21T15:50:31+00:00] INFO: Processing directory[/var/run/mysqld] action create (mysql::server line 108)
-[2013-07-21T15:50:31+00:00] INFO: directory[/var/run/mysqld] group changed to 111
-[2013-07-21T15:50:31+00:00] INFO: Processing directory[/var/log/mysql] action create (mysql::server line 108)
-[2013-07-21T15:50:31+00:00] INFO: directory[/var/log/mysql] group changed to 111
-[2013-07-21T15:50:31+00:00] INFO: Processing directory[/etc/mysql] action create (mysql::server line 108)
-[2013-07-21T15:50:31+00:00] INFO: directory[/etc/mysql] owner changed to 106
-[2013-07-21T15:50:31+00:00] INFO: directory[/etc/mysql] group changed to 111
-[2013-07-21T15:50:31+00:00] INFO: Processing directory[/etc/mysql/conf.d] action create (mysql::server line 108)
-[2013-07-21T15:50:31+00:00] INFO: directory[/etc/mysql/conf.d] owner changed to 106
-[2013-07-21T15:50:31+00:00] INFO: directory[/etc/mysql/conf.d] group changed to 111
-[2013-07-21T15:50:31+00:00] INFO: Processing directory[/var/lib/mysql] action create (mysql::server line 108)
-[2013-07-21T15:50:31+00:00] INFO: Processing directory[/var/lib/mysql] action create (mysql::server line 108)
-[2013-07-21T15:50:31+00:00] INFO: Processing execute[mysql-install-db] action run (mysql::server line 148)
-[2013-07-21T15:50:31+00:00] INFO: Processing service[mysql] action enable (mysql::server line 154)
-[2013-07-21T15:50:31+00:00] INFO: Processing execute[assign-root-password] action run (mysql::server line 166)
-[2013-07-21T15:50:31+00:00] INFO: Processing template[/etc/mysql/grants.sql] action create (mysql::server line 179)
-[2013-07-21T15:50:31+00:00] INFO: template[/etc/mysql/grants.sql] updated content
-[2013-07-21T15:50:31+00:00] INFO: template[/etc/mysql/grants.sql] owner changed to 0
-[2013-07-21T15:50:31+00:00] INFO: template[/etc/mysql/grants.sql] group changed to 0
-[2013-07-21T15:50:31+00:00] INFO: template[/etc/mysql/grants.sql] mode changed to 600
-[2013-07-21T15:50:31+00:00] INFO: template[/etc/mysql/grants.sql] sending run action to execute[mysql-install-privileges] (immediate)
-[2013-07-21T15:50:31+00:00] INFO: Processing execute[mysql-install-privileges] action run (mysql::server line 195)
-[2013-07-21T15:50:31+00:00] INFO: execute[mysql-install-privileges] ran successfully
-[2013-07-21T15:50:31+00:00] INFO: Processing execute[mysql-install-privileges] action nothing (mysql::server line 195)
-[2013-07-21T15:50:31+00:00] INFO: Processing template[/etc/mysql/my.cnf] action create (mysql::server line 202)
-[2013-07-21T15:50:31+00:00] INFO: template[/etc/mysql/my.cnf] backed up to /var/chef/backup/etc/mysql/my.cnf.chef-20130721155031
-[2013-07-21T15:50:31+00:00] INFO: template[/etc/mysql/my.cnf] updated content
-[2013-07-21T15:50:31+00:00] INFO: template[/etc/mysql/my.cnf] owner changed to 0
-[2013-07-21T15:50:31+00:00] INFO: template[/etc/mysql/my.cnf] group changed to 0
-[2013-07-21T15:50:31+00:00] INFO: template[/etc/mysql/my.cnf] mode changed to 644
-[2013-07-21T15:50:31+00:00] INFO: template[/etc/mysql/my.cnf] sending restart action to service[mysql] (immediate)
-[2013-07-21T15:50:31+00:00] INFO: Processing service[mysql] action restart (mysql::server line 218)
-[2013-07-21T15:50:34+00:00] INFO: service[mysql] restarted
-[2013-07-21T15:50:34+00:00] INFO: Processing service[mysql] action start (mysql::server line 218)
-[2013-07-21T15:50:34+00:00] INFO: Processing execute[apt-get-update-build-essentials] action nothing (build-essential::debian line 22)
-[2013-07-21T15:50:34+00:00] INFO: Processing package[autoconf] action nothing (build-essential::debian line 40)
-[2013-07-21T15:50:34+00:00] INFO: Processing package[binutils-doc] action nothing (build-essential::debian line 40)
-[2013-07-21T15:50:34+00:00] INFO: Processing package[bison] action nothing (build-essential::debian line 40)
-[2013-07-21T15:50:34+00:00] INFO: Processing package[build-essential] action nothing (build-essential::debian line 40)
-[2013-07-21T15:50:34+00:00] INFO: Processing package[flex] action nothing (build-essential::debian line 40)
-[2013-07-21T15:50:34+00:00] INFO: Processing chef_gem[mysql] action install (mysql::ruby line 31)
-[2013-07-21T15:50:34+00:00] INFO: Processing mysql_database[my_database] action create (myapp::db line 12)
-[2013-07-21T15:50:34+00:00] INFO: template[nginx.conf] sending reload action to service[nginx] (delayed)
-[2013-07-21T15:50:34+00:00] INFO: Processing service[nginx] action reload (nginx::default line 49)
-[2013-07-21T15:50:34+00:00] INFO: service[nginx] reloaded
-[2013-07-21T15:50:34+00:00] INFO: Chef Run complete in 164.138575 seconds
-[2013-07-21T15:50:34+00:00] INFO: Running report handlers
-[2013-07-21T15:50:34+00:00] INFO: Report handlers complete
+[2013-07-22T15:50:52+00:00] INFO: *** Chef 10.14.2 ***
+[2013-07-22T15:50:52+00:00] INFO: Setting the run_list to ["recipe[apt]", "recipe[nginx]", "recipe[mysql::server]", "recipe[mysql]", "recipe[database::mysql]", "recipe[myapp]"] from JSON
+[2013-07-22T15:50:52+00:00] INFO: Run List is [recipe[apt], recipe[nginx], recipe[mysql::server], recipe[mysql], recipe[database::mysql], recipe[myapp]]
+[2013-07-22T15:50:52+00:00] INFO: Run List expands to [apt, nginx, mysql::server, mysql, database::mysql, myapp]
+[2013-07-22T15:50:52+00:00] INFO: Starting Chef Run for precise64
+[2013-07-22T15:50:52+00:00] INFO: Running start handlers
+[2013-07-22T15:50:52+00:00] INFO: Start handlers complete.
+[2013-07-22T15:50:52+00:00] INFO: ohai plugins will be at: /etc/chef/ohai_plugins
+[2013-07-22T15:50:52+00:00] INFO: Processing remote_directory[/etc/chef/ohai_plugins] action create (ohai::default line 30)
+[2013-07-22T15:50:52+00:00] INFO: Processing directory[/etc/chef/ohai_plugins] action create (dynamically defined)
+[2013-07-22T15:50:52+00:00] INFO: directory[/etc/chef/ohai_plugins] created directory /etc/chef/ohai_plugins
+[2013-07-22T15:50:52+00:00] INFO: directory[/etc/chef/ohai_plugins] mode changed to 755
+[2013-07-22T15:50:52+00:00] INFO: Processing cookbook_file[/etc/chef/ohai_plugins/README] action create (dynamically defined)
+[2013-07-22T15:50:53+00:00] INFO: cookbook_file[/etc/chef/ohai_plugins/README] mode changed to 644
+[2013-07-22T15:50:53+00:00] INFO: cookbook_file[/etc/chef/ohai_plugins/README] created file /etc/chef/ohai_plugins/README
+[2013-07-22T15:50:53+00:00] INFO: remote_directory[/etc/chef/ohai_plugins] created directory /etc/chef/ohai_plugins
+[2013-07-22T15:50:53+00:00] INFO: remote_directory[/etc/chef/ohai_plugins] mode changed to 755
+[2013-07-22T15:50:53+00:00] INFO: Processing ohai[custom_plugins] action reload (ohai::default line 44)
+[2013-07-22T15:50:53+00:00] INFO: ohai[custom_plugins] reloaded
+[2013-07-22T15:50:53+00:00] INFO: Could not find previously defined grants.sql resource
+[2013-07-22T15:50:53+00:00] INFO: Processing execute[apt-get-update-build-essentials] action run (build-essential::debian line 22)
+[2013-07-22T15:51:04+00:00] INFO: execute[apt-get-update-build-essentials] ran successfully
+[2013-07-22T15:51:04+00:00] INFO: Processing package[autoconf] action install (build-essential::debian line 40)
+[2013-07-22T15:51:10+00:00] INFO: Processing package[binutils-doc] action install (build-essential::debian line 40)
+[2013-07-22T15:51:13+00:00] INFO: Processing package[bison] action install (build-essential::debian line 40)
+[2013-07-22T15:51:16+00:00] INFO: Processing package[build-essential] action install (build-essential::debian line 40)
+[2013-07-22T15:51:33+00:00] INFO: Processing package[flex] action install (build-essential::debian line 40)
+[2013-07-22T15:51:36+00:00] INFO: Processing package[mysql-client] action install (mysql::client line 46)
+[2013-07-22T15:51:59+00:00] INFO: Processing package[libmysqlclient-dev] action install (mysql::client line 46)
+[2013-07-22T15:52:05+00:00] INFO: Processing chef_gem[mysql] action install (mysql::ruby line 31)
+[2013-07-22T15:52:12+00:00] INFO: Processing execute[apt-get-update] action run (apt::default line 22)
+[2013-07-22T15:52:18+00:00] INFO: execute[apt-get-update] ran successfully
+[2013-07-22T15:52:18+00:00] INFO: Processing execute[apt-get update] action nothing (apt::default line 29)
+[2013-07-22T15:52:18+00:00] INFO: Processing execute[apt-get autoremove] action nothing (apt::default line 36)
+[2013-07-22T15:52:18+00:00] INFO: Processing execute[apt-get autoclean] action nothing (apt::default line 42)
+[2013-07-22T15:52:18+00:00] INFO: Processing package[update-notifier-common] action install (apt::default line 48)
+[2013-07-22T15:52:21+00:00] INFO: package[update-notifier-common] sending run action to execute[apt-get-update] (immediate)
+[2013-07-22T15:52:21+00:00] INFO: Processing execute[apt-get-update] action run (apt::default line 22)
+[2013-07-22T15:52:26+00:00] INFO: execute[apt-get-update] ran successfully
+[2013-07-22T15:52:26+00:00] INFO: Processing execute[apt-get-update-periodic] action run (apt::default line 52)
+[2013-07-22T15:52:26+00:00] INFO: Processing directory[/var/cache/local] action create (apt::default line 62)
+[2013-07-22T15:52:26+00:00] INFO: directory[/var/cache/local] created directory /var/cache/local
+[2013-07-22T15:52:26+00:00] INFO: directory[/var/cache/local] owner changed to 0
+[2013-07-22T15:52:26+00:00] INFO: directory[/var/cache/local] group changed to 0
+[2013-07-22T15:52:26+00:00] INFO: directory[/var/cache/local] mode changed to 755
+[2013-07-22T15:52:26+00:00] INFO: Processing directory[/var/cache/local/preseeding] action create (apt::default line 62)
+[2013-07-22T15:52:26+00:00] INFO: directory[/var/cache/local/preseeding] created directory /var/cache/local/preseeding
+[2013-07-22T15:52:26+00:00] INFO: directory[/var/cache/local/preseeding] owner changed to 0
+[2013-07-22T15:52:26+00:00] INFO: directory[/var/cache/local/preseeding] group changed to 0
+[2013-07-22T15:52:26+00:00] INFO: directory[/var/cache/local/preseeding] mode changed to 755
+[2013-07-22T15:52:26+00:00] INFO: Processing ohai[reload_nginx] action nothing (nginx::ohai_plugin line 22)
+[2013-07-22T15:52:26+00:00] INFO: Processing template[/etc/chef/ohai_plugins/nginx.rb] action create (nginx::ohai_plugin line 27)
+[2013-07-22T15:52:27+00:00] INFO: template[/etc/chef/ohai_plugins/nginx.rb] updated content
+[2013-07-22T15:52:27+00:00] INFO: template[/etc/chef/ohai_plugins/nginx.rb] owner changed to 0
+[2013-07-22T15:52:27+00:00] INFO: template[/etc/chef/ohai_plugins/nginx.rb] group changed to 0
+[2013-07-22T15:52:27+00:00] INFO: template[/etc/chef/ohai_plugins/nginx.rb] mode changed to 755
+[2013-07-22T15:52:27+00:00] INFO: template[/etc/chef/ohai_plugins/nginx.rb] sending reload action to ohai[reload_nginx] (immediate)
+[2013-07-22T15:52:27+00:00] INFO: Processing ohai[reload_nginx] action reload (nginx::ohai_plugin line 22)
+[2013-07-22T15:52:27+00:00] INFO: ohai[reload_nginx] reloaded
+[2013-07-22T15:52:27+00:00] INFO: Processing remote_directory[/etc/chef/ohai_plugins] action nothing (ohai::default line 30)
+[2013-07-22T15:52:27+00:00] INFO: Processing ohai[custom_plugins] action nothing (ohai::default line 44)
+[2013-07-22T15:52:27+00:00] INFO: Processing package[nginx] action install (nginx::default line 41)
+[2013-07-22T15:52:31+00:00] INFO: Processing service[nginx] action enable (nginx::default line 42)
+[2013-07-22T15:52:31+00:00] INFO: Processing directory[/etc/nginx] action create (nginx::commons_dir line 21)
+[2013-07-22T15:52:31+00:00] INFO: Processing directory[/var/log/nginx] action create (nginx::commons_dir line 28)
+[2013-07-22T15:52:31+00:00] INFO: directory[/var/log/nginx] owner changed to 33
+[2013-07-22T15:52:31+00:00] INFO: Processing directory[/etc/nginx/sites-available] action create (nginx::commons_dir line 36)
+[2013-07-22T15:52:31+00:00] INFO: Processing directory[/etc/nginx/sites-enabled] action create (nginx::commons_dir line 36)
+[2013-07-22T15:52:31+00:00] INFO: Processing directory[/etc/nginx/conf.d] action create (nginx::commons_dir line 36)
+[2013-07-22T15:52:31+00:00] INFO: Processing template[/usr/sbin/nxensite] action create (nginx::commons_script line 22)
+[2013-07-22T15:52:31+00:00] INFO: template[/usr/sbin/nxensite] updated content
+[2013-07-22T15:52:31+00:00] INFO: template[/usr/sbin/nxensite] owner changed to 0
+[2013-07-22T15:52:31+00:00] INFO: template[/usr/sbin/nxensite] group changed to 0
+[2013-07-22T15:52:31+00:00] INFO: template[/usr/sbin/nxensite] mode changed to 755
+[2013-07-22T15:52:31+00:00] INFO: Processing template[/usr/sbin/nxdissite] action create (nginx::commons_script line 22)
+[2013-07-22T15:52:32+00:00] INFO: template[/usr/sbin/nxdissite] updated content
+[2013-07-22T15:52:32+00:00] INFO: template[/usr/sbin/nxdissite] owner changed to 0
+[2013-07-22T15:52:32+00:00] INFO: template[/usr/sbin/nxdissite] group changed to 0
+[2013-07-22T15:52:32+00:00] INFO: template[/usr/sbin/nxdissite] mode changed to 755
+[2013-07-22T15:52:32+00:00] INFO: Processing template[nginx.conf] action create (nginx::commons_conf line 21)
+[2013-07-22T15:52:32+00:00] INFO: template[nginx.conf] backed up to /var/chef/backup/etc/nginx/nginx.conf.chef-20130722155232
+[2013-07-22T15:52:32+00:00] INFO: template[nginx.conf] updated content
+[2013-07-22T15:52:32+00:00] INFO: template[nginx.conf] owner changed to 0
+[2013-07-22T15:52:32+00:00] INFO: template[nginx.conf] group changed to 0
+[2013-07-22T15:52:32+00:00] INFO: template[nginx.conf] mode changed to 644
+[2013-07-22T15:52:32+00:00] INFO: Processing template[/etc/nginx/sites-available/default] action create (nginx::commons_conf line 30)
+[2013-07-22T15:52:32+00:00] INFO: template[/etc/nginx/sites-available/default] backed up to /var/chef/backup/etc/nginx/sites-available/default.chef-20130722155232
+[2013-07-22T15:52:32+00:00] INFO: template[/etc/nginx/sites-available/default] updated content
+[2013-07-22T15:52:32+00:00] INFO: template[/etc/nginx/sites-available/default] owner changed to 0
+[2013-07-22T15:52:32+00:00] INFO: template[/etc/nginx/sites-available/default] group changed to 0
+[2013-07-22T15:52:32+00:00] INFO: template[/etc/nginx/sites-available/default] mode changed to 644
+[2013-07-22T15:52:32+00:00] INFO: template[/etc/nginx/sites-available/default] not queuing delayed action reload on service[nginx] (delayed), as it's already been queued
+[2013-07-22T15:52:32+00:00] INFO: Processing execute[nxensite default] action run (nginx::commons_conf line 23)
+[2013-07-22T15:52:32+00:00] INFO: Processing service[nginx] action start (nginx::default line 49)
+[2013-07-22T15:52:32+00:00] INFO: service[nginx] started
+[2013-07-22T15:52:32+00:00] INFO: Processing package[mysql-client] action install (mysql::client line 46)
+[2013-07-22T15:52:32+00:00] INFO: Processing package[libmysqlclient-dev] action install (mysql::client line 46)
+[2013-07-22T15:52:32+00:00] INFO: Processing directory[/var/cache/local/preseeding] action create (mysql::server line 47)
+[2013-07-22T15:52:32+00:00] INFO: Processing execute[preseed mysql-server] action nothing (mysql::server line 54)
+[2013-07-22T15:52:32+00:00] INFO: Processing template[/var/cache/local/preseeding/mysql-server.seed] action create (mysql::server line 59)
+[2013-07-22T15:52:32+00:00] INFO: template[/var/cache/local/preseeding/mysql-server.seed] updated content
+[2013-07-22T15:52:32+00:00] INFO: template[/var/cache/local/preseeding/mysql-server.seed] owner changed to 0
+[2013-07-22T15:52:32+00:00] INFO: template[/var/cache/local/preseeding/mysql-server.seed] group changed to 0
+[2013-07-22T15:52:32+00:00] INFO: template[/var/cache/local/preseeding/mysql-server.seed] mode changed to 600
+[2013-07-22T15:52:32+00:00] INFO: template[/var/cache/local/preseeding/mysql-server.seed] sending run action to execute[preseed mysql-server] (immediate)
+[2013-07-22T15:52:32+00:00] INFO: Processing execute[preseed mysql-server] action run (mysql::server line 54)
+[2013-07-22T15:52:32+00:00] INFO: execute[preseed mysql-server] ran successfully
+[2013-07-22T15:52:32+00:00] INFO: Processing template[/etc/mysql/debian.cnf] action create (mysql::server line 67)
+[2013-07-22T15:52:32+00:00] INFO: template[/etc/mysql/debian.cnf] updated content
+[2013-07-22T15:52:32+00:00] INFO: template[/etc/mysql/debian.cnf] owner changed to 0
+[2013-07-22T15:52:32+00:00] INFO: template[/etc/mysql/debian.cnf] group changed to 0
+[2013-07-22T15:52:32+00:00] INFO: template[/etc/mysql/debian.cnf] mode changed to 600
+[2013-07-22T15:52:32+00:00] INFO: Processing package[mysql-server] action install (mysql::server line 94)
+[2013-07-22T15:53:06+00:00] INFO: package[mysql-server] sending start action to service[mysql] (immediate)
+[2013-07-22T15:53:06+00:00] INFO: Processing service[mysql] action start (mysql::server line 218)
+[2013-07-22T15:53:06+00:00] INFO: Processing directory[/var/run/mysqld] action create (mysql::server line 108)
+[2013-07-22T15:53:06+00:00] INFO: directory[/var/run/mysqld] group changed to 111
+[2013-07-22T15:53:06+00:00] INFO: Processing directory[/var/log/mysql] action create (mysql::server line 108)
+[2013-07-22T15:53:06+00:00] INFO: directory[/var/log/mysql] group changed to 111
+[2013-07-22T15:53:06+00:00] INFO: Processing directory[/etc/mysql] action create (mysql::server line 108)
+[2013-07-22T15:53:06+00:00] INFO: directory[/etc/mysql] owner changed to 106
+[2013-07-22T15:53:06+00:00] INFO: directory[/etc/mysql] group changed to 111
+[2013-07-22T15:53:06+00:00] INFO: Processing directory[/etc/mysql/conf.d] action create (mysql::server line 108)
+[2013-07-22T15:53:06+00:00] INFO: directory[/etc/mysql/conf.d] owner changed to 106
+[2013-07-22T15:53:06+00:00] INFO: directory[/etc/mysql/conf.d] group changed to 111
+[2013-07-22T15:53:06+00:00] INFO: Processing directory[/var/lib/mysql] action create (mysql::server line 108)
+[2013-07-22T15:53:06+00:00] INFO: Processing directory[/var/lib/mysql] action create (mysql::server line 108)
+[2013-07-22T15:53:06+00:00] INFO: Processing execute[mysql-install-db] action run (mysql::server line 148)
+[2013-07-22T15:53:06+00:00] INFO: Processing service[mysql] action enable (mysql::server line 154)
+[2013-07-22T15:53:06+00:00] INFO: Processing execute[assign-root-password] action run (mysql::server line 166)
+[2013-07-22T15:53:06+00:00] INFO: Processing template[/etc/mysql/grants.sql] action create (mysql::server line 179)
+[2013-07-22T15:53:07+00:00] INFO: template[/etc/mysql/grants.sql] updated content
+[2013-07-22T15:53:07+00:00] INFO: template[/etc/mysql/grants.sql] owner changed to 0
+[2013-07-22T15:53:07+00:00] INFO: template[/etc/mysql/grants.sql] group changed to 0
+[2013-07-22T15:53:07+00:00] INFO: template[/etc/mysql/grants.sql] mode changed to 600
+[2013-07-22T15:53:07+00:00] INFO: template[/etc/mysql/grants.sql] sending run action to execute[mysql-install-privileges] (immediate)
+[2013-07-22T15:53:07+00:00] INFO: Processing execute[mysql-install-privileges] action run (mysql::server line 195)
+[2013-07-22T15:53:07+00:00] INFO: execute[mysql-install-privileges] ran successfully
+[2013-07-22T15:53:07+00:00] INFO: Processing execute[mysql-install-privileges] action nothing (mysql::server line 195)
+[2013-07-22T15:53:07+00:00] INFO: Processing template[/etc/mysql/my.cnf] action create (mysql::server line 202)
+[2013-07-22T15:53:07+00:00] INFO: template[/etc/mysql/my.cnf] backed up to /var/chef/backup/etc/mysql/my.cnf.chef-20130722155307
+[2013-07-22T15:53:07+00:00] INFO: template[/etc/mysql/my.cnf] updated content
+[2013-07-22T15:53:07+00:00] INFO: template[/etc/mysql/my.cnf] owner changed to 0
+[2013-07-22T15:53:07+00:00] INFO: template[/etc/mysql/my.cnf] group changed to 0
+[2013-07-22T15:53:07+00:00] INFO: template[/etc/mysql/my.cnf] mode changed to 644
+[2013-07-22T15:53:07+00:00] INFO: template[/etc/mysql/my.cnf] sending restart action to service[mysql] (immediate)
+[2013-07-22T15:53:07+00:00] INFO: Processing service[mysql] action restart (mysql::server line 218)
+[2013-07-22T15:53:09+00:00] INFO: service[mysql] restarted
+[2013-07-22T15:53:09+00:00] INFO: Processing service[mysql] action start (mysql::server line 218)
+[2013-07-22T15:53:09+00:00] INFO: Processing execute[apt-get-update-build-essentials] action nothing (build-essential::debian line 22)
+[2013-07-22T15:53:09+00:00] INFO: Processing package[autoconf] action nothing (build-essential::debian line 40)
+[2013-07-22T15:53:09+00:00] INFO: Processing package[binutils-doc] action nothing (build-essential::debian line 40)
+[2013-07-22T15:53:09+00:00] INFO: Processing package[bison] action nothing (build-essential::debian line 40)
+[2013-07-22T15:53:09+00:00] INFO: Processing package[build-essential] action nothing (build-essential::debian line 40)
+[2013-07-22T15:53:09+00:00] INFO: Processing package[flex] action nothing (build-essential::debian line 40)
+[2013-07-22T15:53:09+00:00] INFO: Processing chef_gem[mysql] action install (mysql::ruby line 31)
+[2013-07-22T15:53:09+00:00] INFO: Processing mysql_database[my_database] action create (myapp::default line 21)
+[2013-07-22T15:53:10+00:00] INFO: template[nginx.conf] sending reload action to service[nginx] (delayed)
+[2013-07-22T15:53:10+00:00] INFO: Processing service[nginx] action reload (nginx::default line 49)
+[2013-07-22T15:53:10+00:00] INFO: service[nginx] reloaded
+[2013-07-22T15:53:10+00:00] INFO: Chef Run complete in 137.714775 seconds
+[2013-07-22T15:53:10+00:00] INFO: Running report handlers
+[2013-07-22T15:53:10+00:00] INFO: Report handlers complete
 pochi-2:chef-repo snumano$ 
 </pre>
 
