@@ -176,7 +176,7 @@ mysql_database 'my_database' do
 end
 </pre>
 
-6. BerksfileとBerksfile.lockをrename(vagrant upの際、berkshelfが実行され、~/berkshelf以下にrecipeが作成されるのを防ぐため。
+6.BerksfileとBerksfile.lockをrename(vagrant upの際、berkshelfが実行され、~/berkshelf以下にrecipeが作成されるのを防ぐため。
 自作のrecipeは、この処理で作成されないため、Vagrantfile内で指定した自作recipeが見つからないエラーが発生する)
 <pre>
 pochi-2:chef-repo snumano$ mv Berksfile _Berksfile
