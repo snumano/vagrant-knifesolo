@@ -34,7 +34,6 @@ Vagrant.configure("2") do |config|
     chef.add_recipe "mysql::server"
     chef.add_recipe "mysql"
     chef.add_recipe "database::mysql"
-    chef.add_recipe "myapp::db"
     chef.add_recipe "myapp"
 
     chef.json = {

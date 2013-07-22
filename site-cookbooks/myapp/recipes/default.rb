@@ -23,8 +23,4 @@ mysql_database 'my_database' do
   action :create
 end
 
-node['users'].each do |each|
-  log "#{each[:id]} #{each[:pw]} #{each[:priv]}"
-end
-
 
