@@ -1,4 +1,4 @@
-knife soloでrepository作成 + vagrant
+knife soloでrepository作成 + vagrant upすると、起動失敗する例
 =================
 1.repository作成 & git
 <pre>
