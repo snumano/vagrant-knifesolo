@@ -28,7 +28,7 @@ pochi-2:chef-repo snumano$ git commit -m 'init'
  create mode 100644 site-cookbooks/.gitkeep
 </pre>
 
-2. .gitignore準備
+2..gitignore準備
 <pre>
 pochi-2:chef-repo snumano$ vi .gitignore 
 pochi-2:chef-repo snumano$ cat .gitignore 
