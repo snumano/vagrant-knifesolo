@@ -1,4 +1,4 @@
-vagrant-knifesolo
+knife soloでrepository作成 + vagrant
 =================
 1.repository作成 & git
 <pre>
@@ -29,6 +29,7 @@ pochi-2:chef-repo snumano$ git commit -m 'init'
 </pre>
 
 2. .gitignore準備
+<pre>
 pochi-2:chef-repo snumano$ vi .gitignore 
 pochi-2:chef-repo snumano$ cat .gitignore 
 .rake_test_cache
@@ -42,9 +43,10 @@ pochi-2:chef-repo snumano$ cat .gitignore
 .*
 !.gitignore
 *~
-
+</pre>
 
 3.Vagrantfile準備
+<pre>
 pochi-2:chef-repo snumano$ vi Vagrantfile 
 pochi-2:chef-repo snumano$ cat Vagrantfile 
 # -*- mode: ruby -*-
@@ -95,9 +97,10 @@ Vagrant.configure("2") do |config|
     }
   end
 end
-
+</pre>
 
 4.Berksfile準備 & berks install実行
+<pre>
 pochi-2:chef-repo snumano$ vi Berksfile 
 pochi-2:chef-repo snumano$ cat Berksfile 
 site :opscode
@@ -124,9 +127,10 @@ pochi-2:chef-repo snumano$ ls ./cookbooks/
 apt		database	ohai		runit
 aws		mysql		openssl		xfs
 build-essential	nginx		postgresql	yum
-
+</pre>
 
 5.myappのrecipe作成 & metadata.rbにdepends行を追加 & db.rb 編集
+<pre>
 pochi-2:chef-repo snumano$ knife cookbook create myapp -o site-cookbooks
 ** Creating cookbook myapp
 ** Creating README for cookbook: myapp
@@ -170,16 +174,17 @@ mysql_database 'my_database' do
   connection mysql_connection_info
   action :create
 end
-
+</pre>
 
 6. BerksfileとBerksfile.lockをrename(vagrant upの際、berkshelfが実行され、~/berkshelf以下にrecipeが作成されるのを防ぐため。
 自作のrecipeは、この処理で作成されないため、Vagrantfile内で指定した自作recipeが見つからないエラーが発生する)
-
+<pre>
 pochi-2:chef-repo snumano$ mv Berksfile _Berksfile
 pochi-2:chef-repo snumano$ mv Berksfile.lock _Berksfile.lock 
-
+</pre>
 
 7.vagrant up実行
+<pre>
 pochi-2:chef-repo snumano$ vagrant up
 Bringing machine 'default' up with 'virtualbox' provider...
 [default] Importing base box 'precise64'...
@@ -369,5 +374,5 @@ stdin: is not a tty
 [2013-07-21T15:50:34+00:00] INFO: Running report handlers
 [2013-07-21T15:50:34+00:00] INFO: Report handlers complete
 pochi-2:chef-repo snumano$ 
-
+</pre>
 
