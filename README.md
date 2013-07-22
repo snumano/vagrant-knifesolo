@@ -176,14 +176,110 @@ mysql_database 'my_database' do
 end
 </pre>
 
-6.BerksfileとBerksfile.lockをrename(vagrant upの際、berkshelfが実行され、~/berkshelf以下にrecipeが作成されるのを防ぐため。
-自作のrecipeは、この処理で作成されないため、Vagrantfile内で指定した自作recipeが見つからないエラーが発生する)
+6.vagrant up実行するも、途中でerror。
+<pre>
+pochi-2:chef-repo snumano$ vagrant up
+Bringing machine 'default' up with 'virtualbox' provider...
+[default] Importing base box 'precise64'...
+[default] Matching MAC address for NAT networking...
+[default] Setting the name of the VM...
+[default] Clearing any previously set forwarded ports...
+[Berkshelf] Updating Vagrant's berkshelf: '/Users/snumano/.berkshelf/default/vagrant/berkshelf-20130722-4434-me9cly-default'
+[Berkshelf] Using apt (1.9.0)
+[Berkshelf] Using mysql (3.0.2)
+[Berkshelf] Using nginx (1.7.0)
+[Berkshelf] Using database (1.4.0)
+[Berkshelf] Using openssl (1.0.2)
+[Berkshelf] Using build-essential (1.4.0)
+[Berkshelf] Using yum (2.3.0)
+[Berkshelf] Using runit (1.1.6)
+[Berkshelf] Using ohai (1.1.10)
+[Berkshelf] Using postgresql (3.0.2)
+[Berkshelf] Using aws (0.101.2)
+[Berkshelf] Using xfs (1.1.0)
+[default] Creating shared folders metadata...
+[default] Clearing any previously set network interfaces...
+[default] Preparing network interfaces based on configuration...
+[default] Forwarding ports...
+[default] -- 22 => 2222 (adapter 1)
+[default] -- 80 => 8080 (adapter 1)
+[default] Booting VM...
+[default] Waiting for VM to boot. This can take a few minutes.
+[default] VM booted and ready for use!
+[default] Configuring and enabling network interfaces...
+[default] Mounting shared folders...
+[default] -- /vagrant
+[default] -- /vagrant_data
+[default] -- /tmp/vagrant-chef-1/chef-solo-1/cookbooks
+[default] Running provisioner: chef_solo...
+Generating chef JSON and uploading...
+Running chef-solo...
+stdin: is not a tty
+[2013-07-22T14:30:30+00:00] INFO: *** Chef 10.14.2 ***
+[2013-07-22T14:30:30+00:00] INFO: Setting the run_list to ["recipe[apt]", "recipe[nginx]", "recipe[mysql::server]", "recipe[mysql]", "recipe[database::mysql]", "recipe[myapp::db]", "recipe[myapp]"] from JSON
+[2013-07-22T14:30:30+00:00] INFO: Run List is [recipe[apt], recipe[nginx], recipe[mysql::server], recipe[mysql], recipe[database::mysql], recipe[myapp::db], recipe[myapp]]
+[2013-07-22T14:30:30+00:00] INFO: Run List expands to [apt, nginx, mysql::server, mysql, database::mysql, myapp::db, myapp]
+[2013-07-22T14:30:30+00:00] INFO: Starting Chef Run for precise64
+[2013-07-22T14:30:30+00:00] INFO: Running start handlers
+[2013-07-22T14:30:30+00:00] INFO: Start handlers complete.
+[2013-07-22T14:30:31+00:00] INFO: ohai plugins will be at: /etc/chef/ohai_plugins
+[2013-07-22T14:30:31+00:00] INFO: Processing remote_directory[/etc/chef/ohai_plugins] action create (ohai::default line 30)
+[2013-07-22T14:30:31+00:00] INFO: Processing directory[/etc/chef/ohai_plugins] action create (dynamically defined)
+[2013-07-22T14:30:31+00:00] INFO: directory[/etc/chef/ohai_plugins] created directory /etc/chef/ohai_plugins
+[2013-07-22T14:30:31+00:00] INFO: directory[/etc/chef/ohai_plugins] mode changed to 755
+[2013-07-22T14:30:31+00:00] INFO: Processing cookbook_file[/etc/chef/ohai_plugins/README] action create (dynamically defined)
+[2013-07-22T14:30:31+00:00] INFO: cookbook_file[/etc/chef/ohai_plugins/README] mode changed to 644
+[2013-07-22T14:30:31+00:00] INFO: cookbook_file[/etc/chef/ohai_plugins/README] created file /etc/chef/ohai_plugins/README
+[2013-07-22T14:30:31+00:00] INFO: remote_directory[/etc/chef/ohai_plugins] created directory /etc/chef/ohai_plugins
+[2013-07-22T14:30:31+00:00] INFO: remote_directory[/etc/chef/ohai_plugins] mode changed to 755
+[2013-07-22T14:30:31+00:00] INFO: Processing ohai[custom_plugins] action reload (ohai::default line 44)
+[2013-07-22T14:30:31+00:00] INFO: ohai[custom_plugins] reloaded
+[2013-07-22T14:30:31+00:00] INFO: Could not find previously defined grants.sql resource
+[2013-07-22T14:30:31+00:00] INFO: Processing execute[apt-get-update-build-essentials] action run (build-essential::debian line 22)
+[2013-07-22T14:30:58+00:00] INFO: execute[apt-get-update-build-essentials] ran successfully
+[2013-07-22T14:30:58+00:00] INFO: Processing package[autoconf] action install (build-essential::debian line 40)
+[2013-07-22T14:31:14+00:00] INFO: Processing package[binutils-doc] action install (build-essential::debian line 40)
+[2013-07-22T14:31:20+00:00] INFO: Processing package[bison] action install (build-essential::debian line 40)
+[2013-07-22T14:31:25+00:00] INFO: Processing package[build-essential] action install (build-essential::debian line 40)
+[2013-07-22T14:32:16+00:00] INFO: Processing package[flex] action install (build-essential::debian line 40)
+[2013-07-22T14:32:20+00:00] INFO: Processing package[mysql-client] action install (mysql::client line 46)
+[2013-07-22T14:33:24+00:00] INFO: Processing package[libmysqlclient-dev] action install (mysql::client line 46)
+[2013-07-22T14:33:34+00:00] INFO: Processing chef_gem[mysql] action install (mysql::ruby line 31)
+[2013-07-22T14:33:43+00:00] ERROR: Running exception handlers
+[2013-07-22T14:33:43+00:00] ERROR: Exception handlers complete
+[2013-07-22T14:33:43+00:00] FATAL: Stacktrace dumped to /tmp/vagrant-chef-1/chef-stacktrace.out
+[2013-07-22T14:33:43+00:00] FATAL: Chef::Exceptions::CookbookNotFound: Cookbook myapp not found. If you're loading myapp from another cookbook, make sure you configure the dependency in your metadata
+Chef never successfully completed! Any errors should be visible in the output above. Please fix your recipes so that they properly complete.
+pochi-2:chef-repo snumano$ 
+</pre>
+
+
+7.自分で作成した「myapp」のcookbookが見つからないようだ。
+<pre>
+[Berkshelf] Updating Vagrant's berkshelf: '/Users/snumano/.berkshelf/default/vagrant/berkshelf-20130722-4434-me9cly-default'
+</pre>
+上記出力から該当dirを見てみると、自分で作成した「myapp」だけが存在しない。
+そのため「FATAL: Chef::Exceptions::CookbookNotFound: Cookbook myapp not found. If you're loading myapp from another cookbook, make sure you configure the dependency in your metadata
+Chef never successfully completed! Any errors should be visible in theoutput above. Please fix your recipes so that they properly complete.」と言われたようだ。
+<pre>
+pochi-2:chef-repo snumano$ cd /Users/snumano/.berkshelf/default/vagrant/berkshelf-20130722-4434-me9cly-default
+pochi-2:berkshelf-20130722-4434-me9cly-default snumano$ ls -p
+apt/ 		mysql/			postgresql/
+aws/			nginx/			runit/
+build-essential/	ohai/			xfs/
+database/		openssl/		yum/
+pochi-2:berkshelf-20130722-4434-me9cly-default snumano$ 
+</pre>
+
+8.試しに、Berkdfileをrenameしてみた。
+vagrant upの際、berkshelfが実行され、~/berkshelf以下にrecipeが作成されるのを防ぐため。
 <pre>
 pochi-2:chef-repo snumano$ mv Berksfile _Berksfile
 pochi-2:chef-repo snumano$ mv Berksfile.lock _Berksfile.lock 
 </pre>
 
-7.vagrant up実行
+9.そして再びvagrant up実行すると、今度は正常に実行完了した。
+(事前にvagrant haltしている)
 <pre>
 pochi-2:chef-repo snumano$ vagrant up
 Bringing machine 'default' up with 'virtualbox' provider...
