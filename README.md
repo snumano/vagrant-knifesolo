@@ -1,6 +1,7 @@
 vagrant-knifesolo
 =================
 1.repository作成 & git
+<pre>
 pochi-2:Ubuntu5 snumano$ knife solo init chef-repo
 Creating kitchen...
 Creating knife.rb in kitchen...
@@ -25,7 +26,7 @@ pochi-2:chef-repo snumano$ git commit -m 'init'
  create mode 100644 nodes/.gitkeep
  create mode 100644 roles/.gitkeep
  create mode 100644 site-cookbooks/.gitkeep
-
+</pre>
 
 2. .gitignore準備
 pochi-2:chef-repo snumano$ vi .gitignore 
